@@ -1,6 +1,6 @@
 
 # HCI-Bot
-A simple python bot to increase xps for [KU ELF](http://elf.ku.edu.np/course/view.php?id=14)
+A simple python bot to increase xps for [KU ELF](http://elf.ku.edu.np/course/view.php?id=14) HCI course
 
 ## Requirements:
 
