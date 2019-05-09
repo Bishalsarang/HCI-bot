@@ -1,6 +1,6 @@
 
 # HCI-Bot
-A simple python script to increase XPs for [KU ELF](http://elf.ku.edu.np/course/view.php?id=14) HCI course.  It is just for educational purpose. The purpose of the project is to understand session management in requests library.
+A simple python script to increase XPs for [KU ELF](http://elf.ku.edu.np/course/view.php?id=14) HCI course. It is just for educational purpose. The purpose of the project is to understand session management in requests library.
 
 ## Requirements:
  - requests
@@ -8,6 +8,7 @@ A simple python script to increase XPs for [KU ELF](http://elf.ku.edu.np/course/
 ## How to run
 - `pip install requests`
  - Add your *username* and *password* inside ***hci_bot.py*** file
+ - Update *maximum_level_to_reach* which is *5* by default to reach maximum level you want to reach or update the variables accordingly to reach certain rank or achieve certain XPs.
 - `python hci_bot.py`
 
 ## Screenshots:
