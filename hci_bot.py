@@ -3,6 +3,7 @@ import re
 import requests
 import time
 
+
 def print_status(rank, xp, level):
     """
     Prints your rank, xp and levek
@@ -48,8 +49,39 @@ def get_xp_level(pattern_level, pattern_xps, home):
     current_xp = re.search(r'([\d,]+)', current_xp).group(1)
     return current_xp, current_level
 
+def click_links(pattern_id, BASE_URL):
+    """
+    Click links
+    :param pattern_id: pattern_ids given BASE_URL
+    :param BASE_URL: BASE URL, 2 types of link: view and resource
+    :return: None
+    """
+    for i, id in enumerate(pattern_id):
+        print("Clicking Link {}".format(BASE_URL + id))
+        session.get(BASE_URL + id)
+        print("Waiting {} secs".format(SLEEP_TIME))
+        time.sleep(SLEEP_TIME)
+
+        # Load homepage to get xp and level
+        home = session.get(COURSE_URL)
+        rank = get_rank(session.get(LADDER_URL), pattern_rank)
+        xp, level = get_xp_level(pattern_level, pattern_xps, home)
+        print_status(rank, xp, level)
+        if int(level) >= maximum_level_to_reach:
+            print("Congratulations {}. You have reached level {}".format(your_name.title(), level))
+            exit(0)
+        time.sleep(SLEEP_TIME)
 
 def main():
+    """
+    Main function to click links
+    :return:
+    """
+    while True:
+        click_links(pattern_2_ids, BASE_URL_2)
+        click_links(pattern_1_ids, BASE_URL_1)
+
+if __name__ == "__main__":
     # Your username and password for ELF
     username = ""
     password = ""
@@ -81,7 +113,8 @@ def main():
     # Create Session object
     session = requests.session()
     # Login Parameters
-    data = {'username': username, 'password': password}
+    data = {'username': username,
+            'password': password}
     # Create a new session with given credentials
     login_page = session.post(LOGIN_URL, data=data)
 
@@ -93,6 +126,7 @@ def main():
     # Using the session go to HCI course Page
     home = session.get(COURSE_URL)
 
+    # Get name, rank, xp and level
     your_name = re.search(pattern_username, home.text).group(1)
     rank = get_rank(session.get(LADDER_URL), pattern_rank)
     xp, level = get_xp_level(pattern_level, pattern_xps, home)
@@ -107,40 +141,7 @@ def main():
 
     # Maximum level you want to reach
     maximum_level_to_reach = 5
-    while True:
-        for i, id in enumerate(pattern_2_ids):
-            print("Clicking Link {}".format(BASE_URL_2 + id))
-            session.get(BASE_URL_2 + id)
-            print("Waiting {} secs".format(10))
-            time.sleep(10)
-
-            # Load homepage to get xp and level
-            home = session.get(COURSE_URL)
-            rank = get_rank(session.get(LADDER_URL), pattern_rank)
-            xp, level = get_xp_level(pattern_level, pattern_xps, home)
-            print_status(rank, xp, level)
-            if int(level) >= maximum_level_to_reach:
-                print("Congratulations {}. You have reached level {}".format(your_name.title(), level))
-                exit(0)
-            time.sleep(10)
-
-        for i, id in enumerate(pattern_1_ids):
-            print("Clicking Link {}".format(BASE_URL_1 + id))
-            session.get(BASE_URL_1 + id)
-            print("Waiting {} secs".format(10))
-            time.sleep(10)
-
-            # Load homepage to get xp and level
-            home = session.get(COURSE_URL)
-            rank = get_rank(session.get(LADDER_URL), pattern_rank)
-            xp, level = get_xp_level(pattern_level, pattern_xps, home)
-            print_status(rank, xp, level)
-            if int(level) >= maximum_level_to_reach:
-                print("Congratulations {}. You have reached level {}".format(your_name.title(), level))
-                exit(0)
-            time.sleep(10)
-
-
-if __name__ == "__main__":
+    # Time to sleep after every clicks
+    SLEEP_TIME = 10
     main()
 
