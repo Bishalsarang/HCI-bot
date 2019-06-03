@@ -12,7 +12,7 @@ A simple python script to increase XPs for [KU ELF](http://elf.ku.edu.np/course/
 - `python hci_bot.py`
 
 ## Screenshots:
-![Screenshot](https://raw.githubusercontent.com/sarangbishal/HCI-bot/master/sc.JPG?token=AG2ULFFINQNHEXVUHFWT4VC45DSKA)
+![Screenshot](https://raw.githubusercontent.com/sarangbishal/HCI-bot/master/sc.JPG?token=AG2ULFESBCUPRGBL6C4AKOK47X4S2)
 
 ## Disclaimer:
 Use it at your own risk <br>The author won't be responsible for any damage caused by this script.
